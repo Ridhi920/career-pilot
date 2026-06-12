@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   MISSION OPS — Career Pilot's mission-control trend deck
+   deep navy · electric cyan · signal pink · gold telemetry
+   Unbounded (mission titles) · Archivo (body) · IBM Plex Mono (telemetry)
+   ============================================================ */
+@layer base {
+  :root {
+    --background: 224 42% 5%;            /* deep navy      #080C12 */
+    --foreground: 213 30% 90%;           /* arctic white   #DCE4F2 */
+
+    --card: 223 36% 8%;                  /* console panel  #0D1220 */
+    --card-foreground: 213 30% 90%;
+
+    --popover: 223 38% 7%;
+    --popover-foreground: 213 30% 90%;
+
+    --primary: 187 92% 65%;              /* electric cyan  #53E0F5 */
+    --primary-foreground: 224 45% 6%;
+
+    --secondary: 222 30% 12%;            /* raised console #151B28 */
+    --secondary-foreground: 213 30% 90%;
+
+    --muted: 222 30% 10%;
+    --muted-foreground: 218 16% 58%;     /* dim readout    #84909F */
+
+    --accent: 221 30% 15%;
+    --accent-foreground: 213 30% 92%;
+
+    --destructive: 0 80% 62%;
+    --destructive-foreground: 20 40% 96%;
+
+    --border: 221 28% 16%;               /* panel seam     #1D2434 */
+    --input: 221 26% 19%;
+    --ring: 187 92% 65%;
+
+    --radius: 0.5rem;
+
+    /* telemetry lamps */
+    --signal: 187 92% 65%;               /* cyan    #53E0F5 */
+    --data: 327 90% 70%;                 /* pink    #F76EB8 */
+    --caution: 47 96% 60%;               /* gold    #F5CC37 */
+    --alert: 0 84% 64%;                  /* red     #F05656 */
+    --ghost: 258 88% 75%;                /* violet  #A88BF7 */
+  }
+}
+
+/* ============================================================
+   THEMES — three dark looks, switched via data-theme on <html>
+   horizon (default) · midnight (clean blue) · graphite (minimal)
+   ============================================================ */
+@layer base {
+  /* MIDNIGHT — soft navy, ice-blue accent, no CRT effects */
+  [data-theme="midnight"] {
+    --background: 221 35% 8%;
+    --foreground: 215 20% 88%;
+
+    --card: 220 30% 11%;
+    --card-foreground: 215 20% 88%;
+
+    --popover: 220 32% 10%;
+    --popover-foreground: 215 20% 88%;
+
+    --primary: 213 92% 68%;
+    --primary-foreground: 221 40% 8%;
+
+    --secondary: 219 26% 15%;
+    --secondary-foreground: 215 20% 88%;
+
+    --muted: 220 26% 13%;
+    --muted-foreground: 217 14% 60%;
+
+    --accent: 218 26% 18%;
+    --accent-foreground: 215 24% 92%;
+
+    --border: 218 20% 20%;
+    --input: 218 20% 24%;
+    --ring: 213 92% 68%;
+
+    --radius: 0.5rem;
+
+    --signal: 213 92% 68%;              /* ice blue   */
+    --data: 187 80% 62%;
+    --caution: 40 95% 62%;
+    --alert: 4 85% 64%;
+    --ghost: 258 85% 75%;
+  }
+
+  /* GRAPHITE — neutral charcoal, calm sage accent, fully minimal */
+  [data-theme="graphite"] {
+    --background: 220 8% 7%;
+    --foreground: 210 8% 88%;
+
+    --card: 220 7% 10%;
+    --card-foreground: 210 8% 88%;
+
+    --popover: 220 7% 9%;
+    --popover-foreground: 210 8% 88%;
+
+    --primary: 152 45% 62%;
+    --primary-foreground: 220 10% 8%;
+
+    --secondary: 220 6% 14%;
+    --secondary-foreground: 210 8% 88%;
+
+    --muted: 220 6% 12%;
+    --muted-foreground: 215 6% 58%;
+
+    --accent: 220 6% 17%;
+    --accent-foreground: 210 10% 92%;
+
+    --border: 220 6% 19%;
+    --input: 220 6% 23%;
+    --ring: 152 45% 62%;
+
+    --radius: 0.375rem;
+
+    --signal: 152 45% 62%;              /* calm sage  */
+    --data: 200 50% 65%;
+    --caution: 38 80% 62%;
+    --alert: 4 70% 62%;
+    --ghost: 256 50% 74%;
+  }
+
+  /* TERMINAL — warm amber phosphor on soot black, like a 1970s CRT */
+  [data-theme="terminal"] {
+    --background: 30 30% 5%;
+    --foreground: 38 45% 80%;
+
+    --card: 32 26% 8%;
+    --card-foreground: 38 45% 80%;
+
+    --popover: 32 28% 7%;
+    --popover-foreground: 38 45% 80%;
+
+    --primary: 38 100% 55%;
+    --primary-foreground: 30 40% 6%;
+
+    --secondary: 33 22% 12%;
+    --secondary-foreground: 38 45% 80%;
+
+    --muted: 33 22% 10%;
+    --muted-foreground: 35 22% 50%;
+
+    --accent: 34 24% 15%;
+    --accent-foreground: 38 50% 86%;
+
+    --border: 35 28% 16%;
+    --input: 35 28% 20%;
+    --ring: 38 100% 55%;
+
+    --radius: 0.125rem;
+
+    --signal: 38 100% 55%;              /* amber phosphor */
+    --data: 45 75% 70%;                 /* pale gold      */
+    --caution: 22 90% 58%;              /* hot orange     */
+    --alert: 2 80% 56%;
+    --ghost: 32 45% 68%;
+  }
+
+  /* PAPER — a light theme: ink on warm paper, like a printed field journal */
+  [data-theme="paper"] {
+    --background: 42 42% 93%;
+    --foreground: 220 25% 14%;
+
+    --card: 44 38% 96%;
+    --card-foreground: 220 25% 14%;
+
+    --popover: 44 38% 96%;
+    --popover-foreground: 220 25% 14%;
+
+    --primary: 160 45% 26%;
+    --primary-foreground: 44 40% 95%;
+
+    --secondary: 42 30% 88%;
+    --secondary-foreground: 220 25% 14%;
+
+    --muted: 42 28% 88%;
+    --muted-foreground: 220 12% 40%;
+
+    --accent: 42 30% 84%;
+    --accent-foreground: 220 25% 12%;
+
+    --border: 40 22% 75%;
+    --input: 40 22% 70%;
+    --ring: 160 45% 26%;
+
+    --radius: 0.125rem;
+
+    --signal: 160 45% 26%;              /* racing-green ink */
+    --data: 215 55% 38%;                /* fountain-pen blue */
+    --caution: 35 85% 36%;              /* ochre */
+    --alert: 10 70% 42%;                /* vermillion */
+    --ghost: 270 35% 42%;
+    color-scheme: light;
+  }
+
+  /* BLUEPRINT — drafting-table blue, chalk lines, grid paper */
+  [data-theme="blueprint"] {
+    --background: 212 65% 16%;
+    --foreground: 205 50% 91%;
+
+    --card: 212 58% 19%;
+    --card-foreground: 205 50% 91%;
+
+    --popover: 212 60% 18%;
+    --popover-foreground: 205 50% 91%;
+
+    --primary: 42 40% 92%;
+    --primary-foreground: 212 65% 14%;
+
+    --secondary: 212 52% 23%;
+    --secondary-foreground: 205 50% 91%;
+
+    --muted: 212 52% 21%;
+    --muted-foreground: 208 32% 66%;
+
+    --accent: 211 48% 27%;
+    --accent-foreground: 205 55% 94%;
+
+    --border: 209 42% 31%;
+    --input: 209 42% 35%;
+    --ring: 42 40% 92%;
+
+    --radius: 0;
+
+    --signal: 42 40% 92%;               /* chalk white  */
+    --data: 190 60% 70%;                /* cyan pencil  */
+    --caution: 43 90% 64%;              /* yellow marker */
+    --alert: 5 75% 68%;                 /* red pencil   */
+    --ghost: 260 45% 78%;
+  }
+
+  /* per-theme backdrops — texture from the real world, not effects */
+  [data-theme="paper"] body {
+    /* faint notebook dot grid */
+    background-image: radial-gradient(hsl(40 25% 55% / 0.18) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  [data-theme="blueprint"] body {
+    /* drafting grid */
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.35) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  ::selection {
+    background: hsl(var(--signal) / 0.32);
+    color: hsl(190 60% 95%);
+  }
+  h1, h2 {
+    @apply font-display;
+  }
+}
+
+/* ============================================================
+   Telemetry utilities
+   ============================================================ */
+@layer components {
+  /* uppercase telemetry label */
+  .readout {
+    @apply font-mono uppercase tracking-[0.22em] text-[0.66rem] leading-none text-muted-foreground;
+  }
+
+  /* bracketed status tag — [ NOMINAL ] */
+  .tag {
+    @apply font-mono uppercase inline-flex items-center gap-1.5 tracking-[0.14em];
+    font-size: 0.64rem;
+    padding: 0.22rem 0.5rem;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+  }
+
+  /* indicator lamp dot */
+  .lamp {
+    @apply inline-block w-[7px] h-[7px] rounded-full shrink-0;
+    background: currentColor;
+  }
+
+  /* console panel — the only container in the system */
+  .panel {
+    position: relative;
+    background:
+      linear-gradient(180deg, hsl(var(--foreground) / 0.025), transparent 3.5rem),
+      hsl(var(--card) / 0.82);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(6px);
+  }
+
+  /* horizontal scan beam inside a relative parent */
+  .scan-beam {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--signal) / 0.9), transparent);
+    box-shadow: 0 0 18px 2px hsl(var(--signal) / 0.5);
+    animation: scan-y 2.4s ease-in-out infinite alternate;
+  }
+
+  /* faint chart grid for plot surfaces */
+  .plot-grid {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  /* section divider rule with end ticks */
+  .axis {
+    position: relative;
+    height: 1px;
+    background: hsl(var(--border));
+  }
+  .axis::before,
+  .axis::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    width: 1px;
+    height: 7px;
+    background: hsl(var(--muted-foreground) / 0.7);
+  }
+  .axis::before { left: 0; }
+  .axis::after { right: 0; }
+}
+
+/* utilities layer so hover:/focus: variants work.
+   Glow classes kept as no-ops so existing markup doesn't break. */
+@layer utilities {
+  .glow-text,
+  .glow-data-text {
+    text-shadow: none;
+  }
+  /* scrollable container without a visible scrollbar */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* keyframes referenced by component classes (not emitted by Tailwind) */
+@keyframes scan-y {
+  0% { top: 0%; }
+  100% { top: 100%; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border: 2px solid hsl(var(--background));
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--signal) / 0.55);
+}
